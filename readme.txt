@@ -1,11 +1,11 @@
 === WordPress to Buffer ===
-Contributors: flamingtarball
-Plugin URI: http://flamingtarball.com/products/post-to-buffer/
-Author URI: http://flamingtarball.com/
+Contributors: flamingtarball, bostondv
+Plugin URI: https://github.com/bostondv/wordpress-to-buffer
+Author URI: http://pomelodesign.com.com/
 Tags: buffer, bufferapp, twitter, facebook, linkedin
 Requires at least: 2.5.0
-Tested up to: 3.3.2
-Stable tag: 0.8
+Tested up to: 3.5
+Stable tag: 0.9
 
 Publish your posts to Twitter, Facebook and LinkedIn via your Buffer account.
 
@@ -19,6 +19,7 @@ or LinkedIn, via your [bufferapp.com](http://bufferapp.com) account.
 * Posts are optimised for each social network
 * Media attached to posts, to provide better-looking Facebook updates
 * Truncated post content is used where there's no title
+* Supports custom post types
 
 == Installation ==
 
@@ -27,8 +28,8 @@ the WordPress admin dashboard.
 
 To install the plugin from the wordpress.org plugin directory:
 
-1. Download `post-to-buffer.zip`,
-2. Unzip it and upload the `post-to-buffer` folder to the `/wp-content/plugins/`
+1. Download `wordpress-to-buffer.zip`,
+2. Unzip it and upload the `wordpress-to-buffer` folder to the `/wp-content/plugins/`
 directory
 3. Activate the plugin through the 'Plugins' menu in WordPress,
 
@@ -38,7 +39,11 @@ through this process.
 
 == Changelog ==
 
-= 8.8 =
+= 0.9 =
+* Adds support for custom post types
+* Forked repo from http://wordpress.org/extend/plugins/post-to-buffer/ by flamingtarball
+
+= 0.8 =
 * Fixed warning in meta box
 
 = 0.7 =

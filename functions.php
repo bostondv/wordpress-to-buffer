@@ -1,15 +1,15 @@
 <?php
 /**
- * @package post-to-buffer
- * @version 0.8
+ * @package wordpress-to-buffer
+ * @version 0.9
  */
 /*
 Plugin Name: WordPress to Buffer
-Plugin URI: http://flamingtarball.com/products/post-to-buffer/
-Description: When you publish posts to your WordPress blog, this plugin gives you the option to add them to your Buffer. See http://bufferapp.com for details.
-Author: Flaming Tarball
-Author URI: http://flamingtarball.com/
-Version: 0.8
+Plugin URI: https://github.com/bostondv/post-to-buffer/
+Description: When you publish posts to your WordPress blog, this plugin gives you the option to add them to your Buffer.
+Author: Pomelo Design Inc.
+Author URI: http://pomelodesign.com/
+Version: 0.9
 */
 
 global $types;
