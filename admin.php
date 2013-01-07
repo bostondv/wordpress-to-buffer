@@ -1,5 +1,6 @@
 <?php function ft_bufferapp_config() {
 	$key = get_option('ft_bufferapp_consumer_key');
+	$secret = get_option('ft_bufferapp_consumer_secret');
 	$token = get_option('ft_bufferapp_token');
 	$profiles = get_option('ft_bufferapp_profiles');
 	$selected = get_option('ft_bufferapp_profiles_selected');
@@ -11,10 +12,12 @@
 
 		check_admin_referer('ft-bufferapp-config');
 		$key = $_POST['ft_bufferapp_consumer_key'];
+		$secret = $_POST['ft_bufferapp_consumer_secret'];
 		$token = $_POST['ft_bufferapp_token'];
 
-		if($key && $token) {
+		if($key && $secret && $token) {
 			update_option('ft_bufferapp_consumer_key', $key);
+			update_option('ft_bufferapp_consumer_secret', $secret);
 			update_option('ft_bufferapp_token', $token);
 
 			ft_bufferapp_syncprofiles();
@@ -33,20 +36,22 @@
 		update_option('ft_bufferapp_profiles_selected', $selected);
 	} elseif (isset($_POST['clear'])) {
 		delete_option('ft_bufferapp_consumer_key');
+		delete_option('ft_bufferapp_consumer_secret');
 		delete_option('ft_bufferapp_token');
 		delete_option('ft_bufferapp_profiles');
 		delete_option('ft_bufferapp_profiles_selected');
 
 		$key = null;
+		$secret = null;
 		$token = null;
 		$profiles = none;
 	} elseif(isset($_POST['sync'])) {
-		if($key && $token) {
+		if($key && $secret && $token) {
 			ft_bufferapp_syncprofiles();
 			$profiles = get_option('ft_bufferapp_profiles');
 			$selected = get_option('ft_bufferapp_profiles_selected');
 		}
-	} elseif($key && $token && !$profiles) {
+	} elseif($key && $secret && $token && !$profiles) {
 		ft_bufferapp_syncprofiles();
 		$profiles = get_option('ft_bufferapp_profiles');
 		$selected = get_option('ft_bufferapp_profiles_selected');
@@ -80,7 +85,7 @@
 						</ul>
 					</li>
 					<li><?php print(
-						__('Put the Client ID and Token in the boxes below', 'ft-bufferapp')
+						__('Put the Client ID, Client Secret and Access Token in the boxes below', 'ft-bufferapp')
 					); ?></li>
 				</ol>
 
@@ -100,24 +105,23 @@
 								</tr>
 
 								<tr>
+									<td><label for="ft_bufferapp_consumer_secret">Client Secret</label></td>
+									<td><input id="ft_bufferapp_consumer_secret" name="ft_bufferapp_consumer_secret" type="text" value="<?php echo $secret; ?>" /><br /></td>
+								</tr>
+
+								<tr>
 									<td><label for="ft_bufferapp_token">Access token</label></td>
 									<td><input id="ft_bufferapp_token" name="ft_bufferapp_token" type="text" value="<?php echo $token; ?>" /><br /></td>
 								</tr>
 
-								<tr>
-									<td></td>
-									<td>
-										<?php printf(__('This is not the same as Your Token. You need to wait for the email from %s', 'ft-bufferapp'), 'Buffer'); ?>
-									</td>
-								</tr>
 							</tbody>
 						</table>
 
 						<?php wp_nonce_field('ft-bufferapp-config'); ?>
 						<p class="submit">
-							<input type="submit" name="submit" value="<?php _e('Update options &raquo;', 'ft-bufferapp'); ?>" />
+							<input type="submit" name="submit" class="button" value="<?php _e('Update Options', 'ft-bufferapp'); ?>" />
 							<?php if($key && $token) { ?>
-							<input type="submit" name="clear" value="<?php _e('Start again', 'ft-bufferapp'); ?>" />
+							<input type="submit" name="clear" class="button" value="<?php _e('Start Again', 'ft-bufferapp'); ?>" />
 							<?php } ?>
 						</p>
 					</div>
@@ -125,7 +129,7 @@
 			</div>
 		<?php } ?>
 
-		<?php if($key && $token && $profiles) { ?>
+		<?php if($key && $secret && $token && $profiles) { ?>
 			<h3><?php printf(__('Profiles', 'ft-bufferapp')); ?></h3>
 			<p>
 				<?php printf(__('We\'ve found the following profiles in your %s account.<br />When you create a post, you\'ll be able to choose which services to post to.', 'ft-bufferapp'), 'Buffer'); ?>
@@ -152,8 +156,8 @@
 
 				<p class="submit">
 					<input type="submit" name="update" class="button-primary" value="<?php _e('Save Changes', 'bt-bufferapp'); ?>" />
-					<input type="submit" name="sync" value="<?php _e('Sync My Profiles &raquo;', 'bt-bufferapp'); ?>" />
-					<input type="submit" name="clear" value="<?php _e('Clear My Details', 'bt-bufferapp'); ?>" />
+					<input type="submit" name="sync" class="button" value="<?php _e('Sync Profiles', 'bt-bufferapp'); ?>" />
+					<input type="submit" name="clear" class="button" value="<?php _e('Clear Details', 'bt-bufferapp'); ?>" />
 				</p>
 			</form>
 		<?php } ?>
