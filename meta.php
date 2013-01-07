@@ -3,11 +3,11 @@
 		return;
 	}
 
-	if (!wp_verify_nonce($_POST['ft_bufferapp_nonce'], plugin_basename(__FILE__))) {
+	if (!wp_verify_nonce(isset($_POST['ft_bufferapp_nonce']), plugin_basename(__FILE__))) {
 		return;
 	}
 
-	$profiles = $_POST['ft_bufferapp_profiles'];
+	$profiles = isset($_POST['ft_bufferapp_profiles']);
 	delete_post_meta($post_id, '_ft_bufferapp_profiles');
 	if(is_array($profiles)) {
 		foreach($profiles as $profile) {

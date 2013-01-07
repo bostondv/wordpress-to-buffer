@@ -15,7 +15,8 @@ Version: 0.9
 global $types;
 
 function ft_bufferapp_connectnotice() {
-	if ((empty($_SERVER['SCRIPT_FILENAME']) || (basename($_SERVER['SCRIPT_FILENAME']) != 'options-general.php' && $_GET['page'] != 'ft-bufferapp'))) {
+	global $pagenow;
+	if ((empty($_SERVER['SCRIPT_FILENAME'])) || ($pagenow == 'post.php') && (isset($_GET['page']) == 'ft-bufferapp')) {
 		if(!get_option('ft_bufferapp_token')) {
 			printf(
 				'<div id="ft-bufferapp-warning" class="updated fade"><p><strong>%s</strong> %s</p></div>',

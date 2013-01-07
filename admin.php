@@ -119,7 +119,7 @@
 
 						<?php wp_nonce_field('ft-bufferapp-config'); ?>
 						<p class="submit">
-							<input type="submit" name="submit" class="button" value="<?php _e('Update Options', 'ft-bufferapp'); ?>" />
+							<input type="submit" name="submit" class="button-primary" value="<?php _e('Update Options', 'ft-bufferapp'); ?>" />
 							<?php if($key && $token) { ?>
 							<input type="submit" name="clear" class="button" value="<?php _e('Start Again', 'ft-bufferapp'); ?>" />
 							<?php } ?>
