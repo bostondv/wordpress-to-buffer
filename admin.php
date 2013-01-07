@@ -44,7 +44,7 @@
 		$key = null;
 		$secret = null;
 		$token = null;
-		$profiles = none;
+		$profiles = null;
 	} elseif(isset($_POST['sync'])) {
 		if($key && $secret && $token) {
 			ft_bufferapp_syncprofiles();
